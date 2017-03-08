@@ -1,0 +1,26 @@
+{
+  "name": "towerdefense",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "dependencies": {
+    "body-parser": "^1.17.1",
+    "chalk": "^1.1.3",
+    "express": "^4.15.2",
+    "morgan": "^1.8.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/donthedeveloper/towerdefense.git"
+  },
+  "author": "Don Hansen",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/donthedeveloper/towerdefense/issues"
+  },
+  "homepage": "https://github.com/donthedeveloper/towerdefense#readme"
+}
