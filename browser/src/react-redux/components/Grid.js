@@ -1,6 +1,8 @@
 import React from 'react';
 
-export default () => {
+import Enemy from './Enemy';
+
+export default (props) => {
   const cssStyle = {
     position: "relative",
     width: "500px",
@@ -10,7 +12,9 @@ export default () => {
   
   return (
     <div style={ cssStyle }>
-    
+      { props.enemies.map((enemy) =>
+          <Enemy id={ enemy.id } position={ enemy.position } />
+      ) }
     </div>
   );
 }

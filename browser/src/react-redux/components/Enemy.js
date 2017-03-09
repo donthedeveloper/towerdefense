@@ -11,8 +11,6 @@ export default (props) => {
   };
   
   return (
-    <div>
-      
-    </div>
+    <div style={ cssStyle } />
   );
 }
