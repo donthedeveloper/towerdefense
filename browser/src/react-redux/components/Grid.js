@@ -13,7 +13,7 @@ export default (props) => {
   return (
     <div style={ cssStyle }>
       { props.enemies.map((enemy) =>
-          <Enemy id={ enemy.id } position={ enemy.position } />
+          <Enemy key={ enemy.id } id={ enemy.id } position={ enemy.position } />
       ) }
     </div>
   );
