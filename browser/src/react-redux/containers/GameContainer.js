@@ -10,10 +10,15 @@ const GameContainer = (props) => {
   const repeatOften = () => {
     const globalId = requestAnimationFrame(repeatOften);
       props.moveEnemyClicked(0);
-      props.moveEnemyClicked(1);
-      props.moveEnemyClicked(2);
-      props.moveEnemyClicked(3);
-      props.moveEnemyClicked(4);
+      setTimeout(() => {
+        props.moveEnemyClicked(1)
+      }, 3000);
+      setTimeout(() => {
+        props.moveEnemyClicked(2)
+      }, 7000);
+//       props.moveEnemyClicked(2);
+//       props.moveEnemyClicked(3);
+//       props.moveEnemyClicked(4);
   };
   
   const startWave = () => {
@@ -22,7 +27,7 @@ const GameContainer = (props) => {
   
   return (
     <div>
-      <Grid enemies={ props.enemies } grid={ props.grid } />
+      <Grid enemies={ props.enemies } grid={ props.grid } path={ props.path } />
       <div>
         <button onClick={ (e) => startWave() }>Bring It On!</button>
       </div>
@@ -33,7 +38,8 @@ const GameContainer = (props) => {
 const mapStateToFunctions = (state) => {
   return {
     enemies: state.position.enemies,
-    grid: state.position.grid
+    grid: state.position.grid,
+    path: state.position.path
   }
 };
 

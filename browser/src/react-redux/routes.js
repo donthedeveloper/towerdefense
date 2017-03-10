@@ -11,7 +11,7 @@ import GameContainer from './containers/GameContainer';
 
 
 // --------------------- IMPORT REDUX ---------------------
-import { addEnemy, createGrid } from './reducers/position';
+import { addEnemy, createGrid, createPath } from './reducers/position';
 
 
 // --------------------- ON ENTERS ---------------------
@@ -23,6 +23,42 @@ const onGameContainerEnter = () => {
   
   // create grid
   store.dispatch(createGrid(500, 500));
+  
+  // create path
+  const arrOfRectangles = [
+    {
+      left: 225,
+      top: 0,
+      width: 50,
+      height: 100
+    },
+    {
+      left: 225,
+      top: 100,
+      width: 50,
+      height: 100
+    },
+    {
+      left: 225,
+      top: 200,
+      width: 50,
+      height: 100
+    },
+    {
+      left: 225,
+      top: 300,
+      width: 50,
+      height: 100
+    },
+    {
+      left: 225,
+      top: 400,
+      width: 50,
+      height: 100
+    }
+  ];
+  
+  store.dispatch(createPath(arrOfRectangles));
 }
 
 
