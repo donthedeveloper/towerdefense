@@ -3,10 +3,12 @@ import React from 'react';
 import Enemy from './Enemy';
 
 export default (props) => {
+  console.log(props);
+  
   const cssStyle = {
     position: "relative",
-    width: "500px",
-    height: "500px",
+    width: props.grid.width,
+    height: props.grid.height,
     backgroundColor: "blue"
   };
   

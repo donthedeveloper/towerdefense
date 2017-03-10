@@ -11,14 +11,18 @@ import GameContainer from './containers/GameContainer';
 
 
 // --------------------- IMPORT REDUX ---------------------
-import { addEnemy } from './reducers/position';
+import { addEnemy, createGrid } from './reducers/position';
 
 
 // --------------------- ON ENTERS ---------------------
 const onGameContainerEnter = () => {
+  // create enemies
   for (var i = 0; i < 5; i++) {
     store.dispatch(addEnemy());
   }
+  
+  // create grid
+  store.dispatch(createGrid(500, 500));
 }
 
 

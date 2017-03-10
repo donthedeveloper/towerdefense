@@ -4,7 +4,11 @@ const initialState = {
   ],
   towers: [
     
-  ]
+  ],
+  grid: {
+    width: 0,
+    height: 0
+  }
 };
 
 
@@ -13,6 +17,8 @@ const ADD_ENEMY = 'ADD_ENEMY';
 const MOVE_ENEMY = 'MOVE_ENEMY';
 
 const ADD_TOWER = 'ADD_TOWER';
+
+const CREATE_GRID = 'CREATE_GRID';
 
 
 // --------------------- ACTION CREATERS ---------------------
@@ -23,6 +29,11 @@ export const addEnemy = () => ({
 export const moveEnemy = (index) => ({
   type: MOVE_ENEMY, 
   index
+});
+
+export const createGrid = (width, height) => ({
+  type: CREATE_GRID,
+  width, height
 });
 
 
@@ -44,6 +55,10 @@ export default (state = initialState, action) => {
       newState.enemies[action.index].position = [...newState.enemies[action.index].position];
       newState.enemies[action.index].position[0]++;
       newState.enemies[action.index].position[1]++;
+      break;
+    case CREATE_GRID:
+      newState.grid.width = action.width;
+      newState.grid.height = action.height;
       break;
   }
   
