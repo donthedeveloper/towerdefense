@@ -22,7 +22,7 @@ const GameContainer = (props) => {
   
   return (
     <div>
-      <Grid enemies={ props.enemies } />
+      <Grid enemies={ props.enemies } grid={ props.grid } />
       <div>
         <button onClick={ (e) => startWave() }>Bring It On!</button>
       </div>
@@ -32,7 +32,8 @@ const GameContainer = (props) => {
 
 const mapStateToFunctions = (state) => {
   return {
-    enemies: state.position.enemies
+    enemies: state.position.enemies,
+    grid: state.position.grid
   }
 };
 
