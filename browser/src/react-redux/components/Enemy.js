@@ -9,7 +9,7 @@ export default (props) => {
     height: "25px",
     borderRadius: "50%",
     backgroundColor: "red",
-    zIndex: "1"
+    zIndex: "2"
   };
   
   return (
