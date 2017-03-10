@@ -7,12 +7,25 @@ import { moveEnemy } from '../reducers/position';
 
 
 const GameContainer = (props) => {
+  const repeatOften = () => {
+    const globalId = requestAnimationFrame(repeatOften);
+      props.moveEnemyClicked(0);
+      props.moveEnemyClicked(1);
+      props.moveEnemyClicked(2);
+      props.moveEnemyClicked(3);
+      props.moveEnemyClicked(4);
+  };
+  
   const startWave = () => {
-    setInterval(() => props.moveEnemyClicked(0), 1000/16);
-    setInterval(() => props.moveEnemyClicked(1), 1000/50);
-    setInterval(() => props.moveEnemyClicked(2), 1000/90);
-    setInterval(() => props.moveEnemyClicked(3), 1000/160);
-    setInterval(() => props.moveEnemyClicked(4), 1000/240);
+    const globalID = requestAnimationFrame(repeatOften);
+    
+//     setInterval(() => {
+//       props.moveEnemyClicked(0);
+//       props.moveEnemyClicked(1);
+//       props.moveEnemyClicked(2);
+//       props.moveEnemyClicked(3);
+//       props.moveEnemyClicked(4);
+//     }, 1000/16);
   }
   
   return (
