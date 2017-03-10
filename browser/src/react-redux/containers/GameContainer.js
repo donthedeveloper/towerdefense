@@ -18,14 +18,6 @@ const GameContainer = (props) => {
   
   const startWave = () => {
     const globalID = requestAnimationFrame(repeatOften);
-    
-//     setInterval(() => {
-//       props.moveEnemyClicked(0);
-//       props.moveEnemyClicked(1);
-//       props.moveEnemyClicked(2);
-//       props.moveEnemyClicked(3);
-//       props.moveEnemyClicked(4);
-//     }, 1000/16);
   }
   
   return (
