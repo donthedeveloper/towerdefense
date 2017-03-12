@@ -9,7 +9,8 @@ export default (props) => {
     height: "25px",
     borderRadius: "50%",
     backgroundColor: "red",
-    transition: "all 2s",
+    transition: `all 32.25s linear ${props.delayInSeconds}s`,
+    // transitionDelay: props.delayInSeconds,
     zIndex: "2"
   };
 
