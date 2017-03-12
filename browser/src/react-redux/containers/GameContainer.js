@@ -22,7 +22,6 @@ class GameContainer extends React.Component {
   }
 
   componentDidUpdate() {
-    console.log('this is triggered');
     if (this.props.started) {
       setTimeout( () => {
         this.tick()
@@ -34,7 +33,7 @@ class GameContainer extends React.Component {
   start() {
     this.props.startWave();
     // if (this.props.enemies[1].position[1] < 100) {
-      this.props.moveEnemy(1);
+      // this.props.moveEnemy(1);
     // }
 //     const globalID = requestAnimationFrame(repeatOften);
   }

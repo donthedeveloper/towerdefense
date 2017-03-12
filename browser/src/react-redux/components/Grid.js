@@ -25,7 +25,7 @@ export default (props) => {
           <Enemy
             key={ enemy.id }
             id={ enemy.id }
-            position={ enemy.position }
+            destination={ enemy.destination }
             delayInSeconds={ enemy.delayInSeconds }
           />
       ) }

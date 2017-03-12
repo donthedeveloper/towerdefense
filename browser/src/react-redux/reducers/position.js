@@ -85,7 +85,7 @@ export default (state = initialState, action) => {
       newState.enemies[action.index].destination = [...newState.enemies[action.index].destination];
 //       newState.enemies[action.index].position[0]++;
       newState.enemies[action.index].position[1]++;
-      newState.enemies[action.index].destination = 500;
+      newState.enemies[action.index].destination = [237.5, 500];
       break;
     case ADD_TOWER:
       newState.towers.push({
@@ -104,7 +104,6 @@ export default (state = initialState, action) => {
       break;
     case START_WAVE:
       newState.started = true;
-      console.log(newState);
       break;
   }
 
