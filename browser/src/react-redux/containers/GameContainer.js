@@ -3,20 +3,23 @@ import { connect } from 'react-redux';
 
 import Grid from '../components/Grid';
 
-import { moveEnemy, startWave } from '../reducers/position';
+import { moveEnemy, startWave, createTower } from '../reducers/position';
 
 
 class GameContainer extends React.Component {
   constructor(props) {
     super(props);
   }
-  
+
   tick() {
-    if (this.props.enemies[1].position[1] < 100) {
+    if (this.props.enemies[1].position[1] < 200) {
       this.props.moveEnemy(1);
+      this.props.moveEnemy(2);
+      this.props.moveEnemy(3);
+      this.props.moveEnemy(4);
     }
   }
-  
+
   componentDidUpdate() {
     console.log('this is triggered');
     if (this.props.started) {
@@ -25,11 +28,11 @@ class GameContainer extends React.Component {
       }, 16);
     }
   }
-  
-  
-  
-  
-  
+
+
+
+
+
   start() {
     this.props.startWave();
     if (this.props.enemies[1].position[1] < 100) {
@@ -37,23 +40,29 @@ class GameContainer extends React.Component {
     }
 //     const globalID = requestAnimationFrame(repeatOften);
   }
-  
+
   render() {
     return (
       <div>
-        <Grid enemies={ this.props.enemies } grid={ this.props.grid } path={ this.props.path } />
+        <Grid
+          enemies={ this.props.enemies }
+          towers={ this.props.towers }
+          grid={ this.props.grid }
+          path={ this.props.path }
+        />
         <div>
           <button onClick={ (e) => this.start() }>Bring It On!</button>
         </div>
       </div>
     );
   }
-  
+
 }
 
 const mapStateToFunctions = (state) => {
   return {
     enemies: state.position.enemies,
+    towers: state.position.towers,
     grid: state.position.grid,
     path: state.position.path,
     started: state.position.started

@@ -1,9 +1,16 @@
 const initialState = {
   enemies: [
-    
+    // {
+    //   position: [x, y],
+    //   health: 50
+    // }
   ],
   towers: [
-    
+    // {
+    //   range/radius,
+    //   attack: 10,
+    //   cost: 50
+    // }
   ],
   grid: {
     width: 0,
@@ -32,9 +39,14 @@ export const addEnemy = () => ({
 });
 
 export const moveEnemy = (index) => ({
-  type: MOVE_ENEMY, 
+  type: MOVE_ENEMY,
   index
 });
+
+export const addTower = (position) => ({
+  type: ADD_TOWER,
+  position
+})
 
 export const createGrid = (width, height) => ({
   type: CREATE_GRID,
@@ -54,7 +66,7 @@ export const startWave = () => ({
 // --------------------- REDUCER ---------------------
 export default (state = initialState, action) => {
   const newState = Object.assign({}, state);
-  
+
   switch (action.type) {
     case ADD_ENEMY:
       newState.enemies.push({
@@ -70,6 +82,14 @@ export default (state = initialState, action) => {
 //       newState.enemies[action.index].position[0]++;
       newState.enemies[action.index].position[1]++;
       break;
+    case ADD_TOWER:
+      newState.towers.push({
+        id: newState.towers.length,
+        position: action.position,
+        attack: 10,
+        reach: 50
+      });
+      break;
     case CREATE_GRID:
       newState.grid.width = action.width;
       newState.grid.height = action.height;
@@ -82,6 +102,6 @@ export default (state = initialState, action) => {
       console.log(newState);
       break;
   }
-  
+
   return newState;
 }
