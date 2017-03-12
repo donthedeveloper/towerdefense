@@ -22,7 +22,12 @@ export default (props) => {
 
       {/* ENEMIES */}
       { props.enemies.map((enemy) =>
-          <Enemy key={ enemy.id } id={ enemy.id } position={ enemy.position } />
+          <Enemy
+            key={ enemy.id }
+            id={ enemy.id }
+            destination={ enemy.destination }
+            delayInSeconds={ enemy.delayInSeconds }
+          />
       ) }
 
       {/* TOWERS */}

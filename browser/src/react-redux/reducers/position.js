@@ -34,8 +34,9 @@ const START_WAVE = 'START_WAVE';
 
 
 // --------------------- ACTION CREATERS ---------------------
-export const addEnemy = () => ({
-  type: ADD_ENEMY
+export const addEnemy = (delayInSeconds) => ({
+  type: ADD_ENEMY,
+  delayInSeconds
 });
 
 export const moveEnemy = (index) => ({
@@ -72,15 +73,19 @@ export default (state = initialState, action) => {
       newState.enemies.push({
         id: newState.enemies.length,
         position: [237.5,0],
-        health: 50
+        health: 50,
+        delayInSeconds: action.delayInSeconds,
+        destination: [237.5,0]
       });
       break;
     case MOVE_ENEMY:
       newState.enemies = [...newState.enemies];
       newState.enemies[action.index] = Object.assign({}, newState.enemies[action.index]);
       newState.enemies[action.index].position = [...newState.enemies[action.index].position];
+      newState.enemies[action.index].destination = [...newState.enemies[action.index].destination];
 //       newState.enemies[action.index].position[0]++;
       newState.enemies[action.index].position[1]++;
+      newState.enemies[action.index].destination = [237.5, 500];
       break;
     case ADD_TOWER:
       newState.towers.push({
@@ -99,7 +104,6 @@ export default (state = initialState, action) => {
       break;
     case START_WAVE:
       newState.started = true;
-      console.log(newState);
       break;
   }
 

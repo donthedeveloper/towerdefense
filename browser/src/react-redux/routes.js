@@ -18,7 +18,8 @@ import { addEnemy, createGrid, createPath, addTower } from './reducers/position'
 const onGameContainerEnter = () => {
   // create enemies
   for (var i = 0; i < 5; i++) {
-    store.dispatch(addEnemy());
+    const delayInSeconds = i * 5;
+    store.dispatch(addEnemy(delayInSeconds));
   }
 
   // create grid

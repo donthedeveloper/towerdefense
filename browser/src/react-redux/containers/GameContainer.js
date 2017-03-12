@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 import Grid from '../components/Grid';
 
-import { moveEnemy, startWave, createTower } from '../reducers/position';
+import { moveEnemy, startWave } from '../reducers/position';
 
 
 class GameContainer extends React.Component {
@@ -12,7 +12,8 @@ class GameContainer extends React.Component {
   }
 
   tick() {
-    if (this.props.enemies[1].position[1] < 200) {
+    if (this.props.enemies[1].position[1] <= 500) {
+      this.props.moveEnemy(0);
       this.props.moveEnemy(1);
       this.props.moveEnemy(2);
       this.props.moveEnemy(3);
@@ -21,7 +22,6 @@ class GameContainer extends React.Component {
   }
 
   componentDidUpdate() {
-    console.log('this is triggered');
     if (this.props.started) {
       setTimeout( () => {
         this.tick()
@@ -30,14 +30,11 @@ class GameContainer extends React.Component {
   }
 
 
-
-
-
   start() {
     this.props.startWave();
-    if (this.props.enemies[1].position[1] < 100) {
-      this.props.moveEnemy(1);
-    }
+    // if (this.props.enemies[1].position[1] < 100) {
+      // this.props.moveEnemy(1);
+    // }
 //     const globalID = requestAnimationFrame(repeatOften);
   }
 
