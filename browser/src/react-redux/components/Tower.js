@@ -8,10 +8,12 @@ export default (props) => {
     width: "25px",
     height: "25px",
     backgroundColor: "blue",
-    zIndex: "2"
+    zIndex: "3"
   };
 
+  const cssClass = "tower1Selected";
+
   return (
-    <div style={ cssStyle } />
+    <div className={ cssClass } style={ cssStyle } onClick={ props.toggleSelectedTower } />
   );
 }

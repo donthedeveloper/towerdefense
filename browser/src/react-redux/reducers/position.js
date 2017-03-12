@@ -17,7 +17,8 @@ const initialState = {
     height: 0
   },
   path: [],
-  started: false
+  started: false,
+  selectedTower: null
 };
 
 
@@ -26,6 +27,7 @@ const ADD_ENEMY = 'ADD_ENEMY';
 const MOVE_ENEMY = 'MOVE_ENEMY';
 
 const ADD_TOWER = 'ADD_TOWER';
+const SELECT_TOWER = 'SELECT_TOWER';
 
 const CREATE_GRID = 'CREATE_GRID';
 const CREATE_PATH = 'CREATE_PATH';
@@ -47,7 +49,12 @@ export const moveEnemy = (index) => ({
 export const addTower = (position) => ({
   type: ADD_TOWER,
   position
-})
+});
+
+export const selectTower = (towerId) => ({
+  type: SELECT_TOWER,
+  towerId
+});
 
 export const createGrid = (width, height) => ({
   type: CREATE_GRID,
@@ -95,6 +102,13 @@ export default (state = initialState, action) => {
         reach: 50
       });
       break;
+    case SELECT_TOWER:
+      newState.selectedTower = action.towerId;
+      break;
+    // case ADD_PROJECTILE:
+    //   newState.projectiles.push({
+    //
+    //   })
     case CREATE_GRID:
       newState.grid.width = action.width;
       newState.grid.height = action.height;
