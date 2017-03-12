@@ -7,9 +7,7 @@ export default (props) => {
     left: props.position[0],
     width: "25px",
     height: "25px",
-    borderRadius: "50%",
-    backgroundColor: "red",
-    transition: "all 2s",
+    backgroundColor: "blue",
     zIndex: "2"
   };
 

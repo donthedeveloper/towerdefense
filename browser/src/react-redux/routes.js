@@ -11,7 +11,7 @@ import GameContainer from './containers/GameContainer';
 
 
 // --------------------- IMPORT REDUX ---------------------
-import { addEnemy, createGrid, createPath } from './reducers/position';
+import { addEnemy, createGrid, createPath, addTower } from './reducers/position';
 
 
 // --------------------- ON ENTERS ---------------------
@@ -20,10 +20,10 @@ const onGameContainerEnter = () => {
   for (var i = 0; i < 5; i++) {
     store.dispatch(addEnemy());
   }
-  
+
   // create grid
   store.dispatch(createGrid(500, 500));
-  
+
   // create path
   const arrOfRectangles = [
     {
@@ -57,8 +57,14 @@ const onGameContainerEnter = () => {
       height: 100
     }
   ];
-  
+
   store.dispatch(createPath(arrOfRectangles));
+
+  // create towers
+  const towerPositions = [[275, 150], [200, 300]];
+  towerPositions.forEach((coordinates) => {
+    store.dispatch(addTower(coordinates));
+  });
 }
 
 
@@ -67,7 +73,7 @@ export default () => {
     <Provider store={ store }>
       <Router history={ hashHistory }>
         <Route path="/" component={ GameContainer } onEnter={ onGameContainerEnter }>
-          
+
         </Route>
       </Router>
     </Provider>
