@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import Grid from '../components/Grid';
+import Dashboard from '../components/Dashboard';
 
 import { moveEnemy, startWave } from '../reducers/position';
 
@@ -9,10 +10,11 @@ import { moveEnemy, startWave } from '../reducers/position';
 class GameContainer extends React.Component {
   constructor(props) {
     super(props);
+    this.start = this.start.bind(this);
   }
 
   tick() {
-    if (this.props.enemies[1].position[1] <= 500) {
+    if (this.props.enemies[1].position[1] <= 471) {
       this.props.moveEnemy(0);
       this.props.moveEnemy(1);
       this.props.moveEnemy(2);
@@ -40,16 +42,14 @@ class GameContainer extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="app">
         <Grid
           enemies={ this.props.enemies }
           towers={ this.props.towers }
           grid={ this.props.grid }
           path={ this.props.path }
         />
-        <div>
-          <button onClick={ (e) => this.start() }>Bring It On!</button>
-        </div>
+        <Dashboard start={ this.start } started={ this.props.started } />
       </div>
     );
   }
