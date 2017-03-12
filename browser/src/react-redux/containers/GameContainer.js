@@ -3,50 +3,70 @@ import { connect } from 'react-redux';
 
 import Grid from '../components/Grid';
 
-import { moveEnemy } from '../reducers/position';
+import { moveEnemy, startWave } from '../reducers/position';
 
 
-const GameContainer = (props) => {
-  const repeatOften = () => {
-    const globalId = requestAnimationFrame(repeatOften);
-      props.moveEnemyClicked(0);
-      setTimeout(() => {
-        props.moveEnemyClicked(1)
-      }, 3000);
-      setTimeout(() => {
-        props.moveEnemyClicked(2)
-      }, 7000);
-//       props.moveEnemyClicked(2);
-//       props.moveEnemyClicked(3);
-//       props.moveEnemyClicked(4);
-  };
-  
-  const startWave = () => {
-    const globalID = requestAnimationFrame(repeatOften);
+class GameContainer extends React.Component {
+  constructor(props) {
+    super(props);
   }
   
-  return (
-    <div>
-      <Grid enemies={ props.enemies } grid={ props.grid } path={ props.path } />
+  tick() {
+    if (this.props.enemies[1].position[1] < 100) {
+      this.props.moveEnemy(1);
+    }
+  }
+  
+  componentDidUpdate() {
+    console.log('this is triggered');
+    if (this.props.started) {
+      setTimeout( () => {
+        this.tick()
+      }, 16);
+    }
+  }
+  
+  
+  
+  
+  
+  start() {
+    this.props.startWave();
+    if (this.props.enemies[1].position[1] < 100) {
+      this.props.moveEnemy(1);
+    }
+//     const globalID = requestAnimationFrame(repeatOften);
+  }
+  
+  render() {
+    return (
       <div>
-        <button onClick={ (e) => startWave() }>Bring It On!</button>
+        <Grid enemies={ this.props.enemies } grid={ this.props.grid } path={ this.props.path } />
+        <div>
+          <button onClick={ (e) => this.start() }>Bring It On!</button>
+        </div>
       </div>
-    </div>
-  );
-};
+    );
+  }
+  
+}
 
 const mapStateToFunctions = (state) => {
   return {
     enemies: state.position.enemies,
     grid: state.position.grid,
-    path: state.position.path
+    path: state.position.path,
+    started: state.position.started
   }
 };
 
 const mapDispatchToFunctions = (dispatch) => {
   return {
-    moveEnemyClicked: (index) => {
+    moveEnemy: (index) => {
       dispatch( moveEnemy(index) )
+    },
+    startWave: () => {
+      dispatch( startWave() )
     }
   }
 };

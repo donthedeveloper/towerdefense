@@ -9,7 +9,8 @@ const initialState = {
     width: 0,
     height: 0
   },
-  path: []
+  path: [],
+  started: false
 };
 
 
@@ -21,6 +22,8 @@ const ADD_TOWER = 'ADD_TOWER';
 
 const CREATE_GRID = 'CREATE_GRID';
 const CREATE_PATH = 'CREATE_PATH';
+
+const START_WAVE = 'START_WAVE';
 
 
 // --------------------- ACTION CREATERS ---------------------
@@ -41,6 +44,10 @@ export const createGrid = (width, height) => ({
 export const createPath = (arrOfRectangles) => ({
   type: CREATE_PATH,
   path: arrOfRectangles
+});
+
+export const startWave = () => ({
+  type: START_WAVE
 });
 
 
@@ -69,6 +76,10 @@ export default (state = initialState, action) => {
       break;
     case CREATE_PATH:
       newState.path = action.path;
+      break;
+    case START_WAVE:
+      newState.started = true;
+      console.log(newState);
       break;
   }
   
