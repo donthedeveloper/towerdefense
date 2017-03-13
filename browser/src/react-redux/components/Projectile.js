@@ -3,8 +3,8 @@ import React from 'react';
 export default (props) => {
   const cssStyle = {
     position: "absolute",
-    // top: `${props.destination[1]}px`,
-    // left: `${props.destination[0]}px`,
+    top: `${props.start[1]}px`,
+    left: `${props.start[0]}px`,
     width: "5px",
     height: "5px",
     borderRadius: "50%",

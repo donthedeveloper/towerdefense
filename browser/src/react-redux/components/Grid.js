@@ -3,6 +3,7 @@ import React from 'react';
 import Enemy from './Enemy';
 import Tower from './Tower';
 import Rectangle from './Rectangle';
+import Projectile from './Projectile';
 
 export default (props) => {
 
@@ -33,6 +34,11 @@ export default (props) => {
       {/* TOWERS */}
       { props.towers.map((tower) =>
           <Tower key={ tower.id } id={ tower.id } position={ tower.position } />
+      ) }
+
+      {/* PROJECTILES */}
+      { props.projectiles.map((projectile) =>
+          <Projectile key={ projectile.id } id={ projectile.id } start={ projectile.start } />
       ) }
     </div>
   );
