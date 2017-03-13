@@ -4,13 +4,15 @@ import { connect } from 'react-redux';
 import Grid from '../components/Grid';
 import Dashboard from '../components/Dashboard';
 
-import { moveEnemy, startWave, addTarget, addProjectile, updateProjectile } from '../reducers/position';
+import { moveEnemy, startWave, addTarget, addProjectile, updateProjectile, addTower } from '../reducers/position';
 
 
 class GameContainer extends React.Component {
   constructor(props) {
     super(props);
     this.start = this.start.bind(this);
+    this.placeTower = this.props.placeTower;
+    this.placeTower = this.placeTower.bind(this);
   }
 
   tick() {
@@ -102,8 +104,9 @@ class GameContainer extends React.Component {
           grid={ this.props.grid }
           path={ this.props.path }
           projectiles={ this.props.projectiles }
+          placeTower={ this.props.placeTower }
         />
-        <Dashboard start={ this.start } started={ this.props.started } />
+        <Dashboard start={ this.start } started={ this.props.started } towers={ this.props.towers } />
       </div>
     );
   }
@@ -137,6 +140,9 @@ const mapDispatchToFunctions = (dispatch) => {
     },
     updateProjectile: (projectileId, end) => {
       dispatch( updateProjectile(projectileId, end) )
+    },
+    placeTower: (coordinates) => {
+      dispatch( addTower(coordinates) )
     }
   }
 };

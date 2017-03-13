@@ -14,10 +14,8 @@ export default (props) => {
     backgroundColor: "green"
   };
 
-  // console.log('projectiles:', props.projectiles);
-
   return (
-    <div className="grid" style={ cssStyle }>
+    <div className="grid" id="grid" style={ cssStyle } onClick={ (e) => props.placeTower([e.clientX - document.getElementById("grid").offsetLeft, e.clientY - document.getElementById("grid").offsetTop]) }>
       {/* PATH */}
       { props.path.map((rectangle, index) =>
           <Rectangle key={ index } rectangle={ rectangle } />
