@@ -57,7 +57,7 @@ class GameContainer extends React.Component {
         // console.log('EnemyX', enemy.id, enemyX)
         // console.log('EnemyY:', enemy.id, enemyY);
 
-        if (Math.abs(towerX-enemyX) <= 150 && Math.abs(towerY-enemyY) <= 150) {
+        if (Math.abs(towerX-enemyX) <= 75 && Math.abs(towerY-enemyY) <= 75) {
           this.props.addTarget(tower.id, enemy.id);
           // console.log(tower.id, enemy.id);
           this.props.addProjectile([towerX, towerY], null, tower.id, enemy.id);
@@ -68,11 +68,18 @@ class GameContainer extends React.Component {
 
   moveEnemies() {
     if (this.props.enemies[1].position[1] <= 471) {
-      this.props.moveEnemy(0);
-      this.props.moveEnemy(1);
-      this.props.moveEnemy(2);
-      this.props.moveEnemy(3);
-      this.props.moveEnemy(4);
+      setTimeout(() => {
+        this.props.moveEnemy(0);
+        this.props.moveEnemy(1);
+        this.props.moveEnemy(2);
+        this.props.moveEnemy(3);
+        this.props.moveEnemy(4);
+      }, 1000);
+      // this.props.moveEnemy(0);
+      // this.props.moveEnemy(1);
+      // this.props.moveEnemy(2);
+      // this.props.moveEnemy(3);
+      // this.props.moveEnemy(4);
     }
   }
 
@@ -80,7 +87,7 @@ class GameContainer extends React.Component {
     if (this.props.started) {
       setTimeout( () => {
         this.tick()
-      }, 5000);
+      }, 16);
     }
   }
 
