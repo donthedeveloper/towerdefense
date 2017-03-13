@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import Grid from '../components/Grid';
 import Dashboard from '../components/Dashboard';
 
-import { moveEnemy, startWave, addTarget, addProjectile } from '../reducers/position';
+import { moveEnemy, startWave, addTarget, addProjectile, updateProjectile } from '../reducers/position';
 
 
 class GameContainer extends React.Component {
@@ -22,11 +22,13 @@ class GameContainer extends React.Component {
 
   moveProjectiles() {
     // loop through projectiles
-    // this.props.projectils.forEach((projectile) => {
-    //   if (!project.end) {
-    //     this.props.enemies[ projectile.target ]
-    //   }
-    // });
+    this.props.projectiles.forEach((projectile) => {
+      // if (!projectile.end) {
+      //   const targetCoordinates = this.props.enemies[]
+      //
+      //   this.props.updateProjectile(projectile.id, )
+      // }
+    });
       // if end DOES NOT EXIST
         //
   }
@@ -47,6 +49,7 @@ class GameContainer extends React.Component {
 
         if (Math.abs(towerX-enemyX) <= 150 && Math.abs(towerY-enemyY) <= 150) {
           this.props.addTarget(tower.id, enemy.id);
+          // console.log(tower.id, enemy.id);
           this.props.addProjectile([towerX, towerY], null, tower.id, enemy.id);
         }
       });
@@ -119,8 +122,11 @@ const mapDispatchToFunctions = (dispatch) => {
     startWave: () => {
       dispatch( startWave() )
     },
-    addProjectile: (start, end) => {
-      dispatch( addProjectile(start, end) )
+    addProjectile: (start, end, towerId, target) => {
+      dispatch( addProjectile(start, end, towerId, target) )
+    },
+    updateProjectile: (projectileId, end) => {
+      dispatch( updateProjectile(projectileId, end) )
     }
   }
 };

@@ -35,6 +35,7 @@ const SELECT_TOWER = 'SELECT_TOWER';
 const ADD_TARGET = 'ADD_TARGET';
 
 const ADD_PROJECTILE = 'ADD_PROJECTILE';
+const UPDATE_PROJECTILE = 'UPDATE_PROJECTILE';
 
 const CREATE_GRID = 'CREATE_GRID';
 const CREATE_PATH = 'CREATE_PATH';
@@ -75,6 +76,12 @@ export const addProjectile = (start, end, towerId, target) => ({
   end,
   towerId,
   target
+})
+
+export const updateProjectile = (projectileId, end) => ({
+  type: UPDATE_PROJECTILE,
+  projectileId,
+  end
 })
 
 export const createGrid = (width, height) => ({
@@ -131,13 +138,18 @@ export default (state = initialState, action) => {
       newState.towers[action.towerId].target = action.enemyId;
       break;
     case ADD_PROJECTILE:
+      console.log(action);
       newState.projectiles.push({
         id: newState.projectiles.length,
         start: action.start,
         end: action.end,
         towerId: action.towerId,
         target: action.target
-      })
+      });
+      break;
+    case UPDATE_PROJECTILE:
+      newState.projectiles[action.projectileId].end = action.end;
+      break;
     case CREATE_GRID:
       newState.grid.width = action.width;
       newState.grid.height = action.height;

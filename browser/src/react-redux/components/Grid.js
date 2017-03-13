@@ -38,7 +38,12 @@ export default (props) => {
 
       {/* PROJECTILES */}
       { props.projectiles.map((projectile) =>
-          <Projectile key={ projectile.id } id={ projectile.id } start={ projectile.start } />
+          <Projectile
+            key={ projectile.id }
+            id={ projectile.id }
+            start={ projectile.start }
+            end={ projectile.end }
+          />
       ) }
     </div>
   );
