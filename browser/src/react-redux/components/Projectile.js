@@ -4,6 +4,8 @@ export default (props) => {
   const x = (props.end) ? props.end[0] : props.start[0];
   const y = (props.end) ? props.end[1] : props.start[1];
 
+  if (!props.end) console.log('end was null');
+
   // if (props.end) {
   //   const x = props.start[0];
   //   const y = props.start[1];

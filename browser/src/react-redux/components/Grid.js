@@ -14,6 +14,8 @@ export default (props) => {
     backgroundColor: "green"
   };
 
+  // console.log('projectiles:', props.projectiles);
+
   return (
     <div className="grid" style={ cssStyle }>
       {/* PATH */}

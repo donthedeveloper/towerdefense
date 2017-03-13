@@ -138,7 +138,6 @@ export default (state = initialState, action) => {
       newState.towers[action.towerId].target = action.enemyId;
       break;
     case ADD_PROJECTILE:
-      console.log(action);
       newState.projectiles.push({
         id: newState.projectiles.length,
         start: action.start,

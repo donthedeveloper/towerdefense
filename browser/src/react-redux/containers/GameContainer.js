@@ -11,7 +11,6 @@ class GameContainer extends React.Component {
   constructor(props) {
     super(props);
     this.start = this.start.bind(this);
-    console.log(props);
   }
 
   tick() {
@@ -23,11 +22,18 @@ class GameContainer extends React.Component {
   moveProjectiles() {
     // loop through projectiles
     this.props.projectiles.forEach((projectile) => {
-      // if (!projectile.end) {
-      //   const targetCoordinates = this.props.enemies[]
-      //
-      //   this.props.updateProjectile(projectile.id, )
-      // }
+      if (!projectile.end) {
+        setTimeout(() => {
+          // console.log('enemies', this.props.enemies);
+          const targetCoordinates = this.props.enemies[projectile.target].position;
+          // console.log(targetCoordinates);
+          this.props.updateProjectile(projectile.id, targetCoordinates);
+        }, 1);
+        // console.log('enemies', this.props.enemies);
+        // const targetCoordinates = this.props.enemies[projectile.target].position;
+        // console.log(targetCoordinates);
+        // this.props.updateProjectile(projectile.id, targetCoordinates);
+      }
     });
       // if end DOES NOT EXIST
         //
@@ -45,7 +51,11 @@ class GameContainer extends React.Component {
         const enemyX = enemy.position[0];
         const enemyY = enemy.position[1];
 
-        console.log(towerX-enemyX);
+        // console.log('NEW');
+        // console.log('TowerX:', tower.id, towerX);
+        // console.log('TowerY', tower.id, towerY);
+        // console.log('EnemyX', enemy.id, enemyX)
+        // console.log('EnemyY:', enemy.id, enemyY);
 
         if (Math.abs(towerX-enemyX) <= 150 && Math.abs(towerY-enemyY) <= 150) {
           this.props.addTarget(tower.id, enemy.id);
