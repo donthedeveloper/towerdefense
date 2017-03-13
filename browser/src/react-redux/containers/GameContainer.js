@@ -4,19 +4,39 @@ import { connect } from 'react-redux';
 import Grid from '../components/Grid';
 import Dashboard from '../components/Dashboard';
 
-import { moveEnemy, startWave, addTarget } from '../reducers/position';
+import { moveEnemy, startWave, addTarget, addProjectile, updateProjectile } from '../reducers/position';
 
 
 class GameContainer extends React.Component {
   constructor(props) {
     super(props);
     this.start = this.start.bind(this);
-    console.log(props);
   }
 
   tick() {
     this.moveEnemies();
     this.checkForNewTargets();
+    this.moveProjectiles();
+  }
+
+  moveProjectiles() {
+    // loop through projectiles
+    this.props.projectiles.forEach((projectile) => {
+      if (!projectile.end) {
+        setTimeout(() => {
+          // console.log('enemies', this.props.enemies);
+          const targetCoordinates = this.props.enemies[projectile.target].position;
+          // console.log(targetCoordinates);
+          this.props.updateProjectile(projectile.id, targetCoordinates);
+        }, 1);
+        // console.log('enemies', this.props.enemies);
+        // const targetCoordinates = this.props.enemies[projectile.target].position;
+        // console.log(targetCoordinates);
+        // this.props.updateProjectile(projectile.id, targetCoordinates);
+      }
+    });
+      // if end DOES NOT EXIST
+        //
   }
 
   // just find first target in loop and keep as target for now
@@ -31,10 +51,16 @@ class GameContainer extends React.Component {
         const enemyX = enemy.position[0];
         const enemyY = enemy.position[1];
 
-        console.log(towerX-enemyX);
+        // console.log('NEW');
+        // console.log('TowerX:', tower.id, towerX);
+        // console.log('TowerY', tower.id, towerY);
+        // console.log('EnemyX', enemy.id, enemyX)
+        // console.log('EnemyY:', enemy.id, enemyY);
 
         if (Math.abs(towerX-enemyX) <= 150 && Math.abs(towerY-enemyY) <= 150) {
           this.props.addTarget(tower.id, enemy.id);
+          // console.log(tower.id, enemy.id);
+          this.props.addProjectile([towerX, towerY], null, tower.id, enemy.id);
         }
       });
     });
@@ -54,7 +80,7 @@ class GameContainer extends React.Component {
     if (this.props.started) {
       setTimeout( () => {
         this.tick()
-      }, 16);
+      }, 5000);
     }
   }
 
@@ -75,6 +101,7 @@ class GameContainer extends React.Component {
           towers={ this.props.towers }
           grid={ this.props.grid }
           path={ this.props.path }
+          projectiles={ this.props.projectiles }
         />
         <Dashboard start={ this.start } started={ this.props.started } />
       </div>
@@ -87,6 +114,7 @@ const mapStateToFunctions = (state) => {
   return {
     enemies: state.position.enemies,
     towers: state.position.towers,
+    projectiles: state.position.projectiles,
     grid: state.position.grid,
     path: state.position.path,
     started: state.position.started
@@ -103,6 +131,12 @@ const mapDispatchToFunctions = (dispatch) => {
     },
     startWave: () => {
       dispatch( startWave() )
+    },
+    addProjectile: (start, end, towerId, target) => {
+      dispatch( addProjectile(start, end, towerId, target) )
+    },
+    updateProjectile: (projectileId, end) => {
+      dispatch( updateProjectile(projectileId, end) )
     }
   }
 };
