@@ -4,16 +4,43 @@ import { connect } from 'react-redux';
 import Grid from '../components/Grid';
 import Dashboard from '../components/Dashboard';
 
-import { moveEnemy, startWave } from '../reducers/position';
+import { moveEnemy, startWave, addTarget } from '../reducers/position';
 
 
 class GameContainer extends React.Component {
   constructor(props) {
     super(props);
     this.start = this.start.bind(this);
+    console.log(props);
   }
 
   tick() {
+    this.moveEnemies();
+    this.checkForNewTargets();
+  }
+
+  // just find first target in loop and keep as target for now
+  checkForNewTargets() {
+    this.props.towers.forEach((tower) => {
+      if (tower.target) { return }
+
+      const towerX = tower.position[0];
+      const towerY = tower.position[1];
+
+      this.props.enemies.forEach((enemy) => {
+        const enemyX = enemy.position[0];
+        const enemyY = enemy.position[1];
+
+        console.log(towerX-enemyX);
+
+        if (Math.abs(towerX-enemyX) <= 150 && Math.abs(towerY-enemyY) <= 150) {
+          this.props.addTarget(tower.id, enemy.id);
+        }
+      });
+    });
+  }
+
+  moveEnemies() {
     if (this.props.enemies[1].position[1] <= 471) {
       this.props.moveEnemy(0);
       this.props.moveEnemy(1);
@@ -70,6 +97,9 @@ const mapDispatchToFunctions = (dispatch) => {
   return {
     moveEnemy: (index) => {
       dispatch( moveEnemy(index) )
+    },
+    addTarget: (towerId, enemyId) => {
+      dispatch( addTarget(towerId, enemyId) )
     },
     startWave: () => {
       dispatch( startWave() )
