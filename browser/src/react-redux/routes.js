@@ -35,25 +35,25 @@ const onGameContainerEnter = () => {
     },
     {
       left: 225,
-      top: 100,
+      top: 99,
       width: 50,
       height: 100
     },
     {
       left: 225,
-      top: 200,
+      top: 199,
       width: 50,
       height: 100
     },
     {
       left: 225,
-      top: 300,
+      top: 299,
       width: 50,
       height: 100
     },
     {
       left: 225,
-      top: 400,
+      top: 396,
       width: 50,
       height: 100
     }

@@ -14,7 +14,7 @@ export default (props) => {
   };
 
   return (
-    <div style={ cssStyle }>
+    <div className="grid" style={ cssStyle }>
       {/* PATH */}
       { props.path.map((rectangle, index) =>
           <Rectangle key={ index } rectangle={ rectangle } />
