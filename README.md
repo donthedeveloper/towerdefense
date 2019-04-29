@@ -29,6 +29,3 @@ Fork it!
 3. Push to the branch: git push origin my-new-feature
 4. Submit a pull request :D
 5. History
-
-## Credits
-Don Hansen - donhansen347@gmail.com  
